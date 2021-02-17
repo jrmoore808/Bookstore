@@ -28,7 +28,7 @@ namespace Bookstore
             services.AddControllersWithViews();
             services.AddDbContext<BooksDbContext>(options =>
             {
-               options.UseSqlServer(Configuration["ConnectionString:BooksConnection"]);
+               options.UseSqlServer(Configuration["ConnectionStrings:BooksConnection"]);
             });
             services.AddScoped<IBooksRepository, EFBooksRepository>();
         }
@@ -59,6 +59,8 @@ namespace Bookstore
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            SeedData.EnsurePopulated(app);
         }
     }
 }

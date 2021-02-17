@@ -7,6 +7,6 @@ namespace Bookstore.Models
 {
     public interface IBooksRepository
     {
-        IQueryable<Books> Books { get; }
+        IQueryable<Book> Books { get; }
     }
 }
