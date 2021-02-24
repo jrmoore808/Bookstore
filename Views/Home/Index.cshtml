@@ -2,40 +2,61 @@
     ViewData["Title"] = "Bookstore";
 }
 
-@model IQueryable<Book>
+@model BookListViewModel
+    <!--Title/Headers-->
+    <div class="text-center">
+        <h1 class="display-4">Welcome to the Online Bookstore</h1>
+        <p>Check out our list of favorite books below!</p>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to the Online Bookstore</h1>
-    <p>Check out our list of favorite books below!</p>
-</div>
+    <!--Results table-->
+    <div style="padding: 20px;" class="text-center">
+        <h5 class="display-4 text-capitalize font-italic font-weight-light text-primary">best books</h5>
+        <table class="table table-bordered list-group-horizontal-lg">
+            <thead>
+                <tr class="bg-light">
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>ISBN</th>
+                    <th>Classification</th>
+                    <th>Category</th>
+                    <th>Pages</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.Books)
+                {
+                    <tr>
+                        <td>@x.Title</td>
+                        <td>@x.AuthorFirst @x.AuthorLast</td>
+                        <td>@x.Publisher</td>
+                        <td>@x.ISBN</td>
+                        <td>@x.Classification</td>
+                        <td>@x.Category</td>
+                        <td>@x.Pages</td>
+                        <td class="bg-success"><b>$@x.Price</b></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-<div style="padding: 20px;" class="text-center">
-    <h5 class="display-4">Best Books</h5>
-    <table class="table table-bordered list-group-horizontal-lg">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Publisher</th>
-                <th>ISBN</th>
-                <th>Classification</th>
-                <th>Category</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var x in Model)
-            {
-            <tr>
-                <td>@x.Title</td>
-                <td>@x.AuthorFirst @x.AuthorLast</td>
-                <td>@x.Publisher</td>
-                <td>@x.ISBN</td>
-                <td>@x.Classification</td>
-                <td>@x.Category</td>
-                <td>@x.Price</td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</div>
+    <!--Creates navigation menu based on the PageInfo model with PageLinkTagHelper css model-->
+    <div page-model="@Model.PageInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
+         page-class-normal="btn-outline-dark"
+         page-class-selected="btn-secondary"
+         class="btn-group col-md-2">
+    </div>
+
+
+    <!--
+    Custom Bootstrap Styling
+        {
+            For my header: class="display-4 text-capitalize font-italic font-weight-light text-primary" -- I figured out how to use bootstrap commands to change text capitalization, formatting, color, and overall appearance.
+            For my table: class="table table-bordered list-group-horizontal-lg" -- these table commands were new to me and I researched how to utilize them.
+            For my row: class="bg-success" -- I experimented with bootstrap background colors.
+            For my page navbar: class="btn-group col-md-2" -- the col-md-2 command was foreign to me so I researched how ot utilize it.
+        }
+    -->
