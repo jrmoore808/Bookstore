@@ -3,12 +3,6 @@
 }
 
 @model BookListViewModel
-    <!--Title/Headers-->
-    <div class="text-center">
-        <h1 class="display-4">Welcome to the Online Bookstore</h1>
-        <p>Check out our list of favorite books below!</p>
-    </div>
-
     <!--Results table-->
     <div style="padding: 20px;" class="text-center">
         <h5 class="display-4 text-capitalize font-italic font-weight-light text-primary">best books</h5>
@@ -26,27 +20,20 @@
                 </tr>
             </thead>
             <tbody>
+                <!--Loop that pulls data from ProjectSummary.cshtml shared layout-->
                 @foreach (var x in Model.Books)
                 {
-                    <tr>
-                        <td>@x.Title</td>
-                        <td>@x.AuthorFirst @x.AuthorLast</td>
-                        <td>@x.Publisher</td>
-                        <td>@x.ISBN</td>
-                        <td>@x.Classification</td>
-                        <td>@x.Category</td>
-                        <td>@x.Pages</td>
-                        <td class="bg-success"><b>$@x.Price</b></td>
-                    </tr>
+                    <partial name="ProjectSummary" model="x" />
                 }
             </tbody>
         </table>
     </div>
 
-    <!--Creates navigation menu based on the PageInfo model with PageLinkTagHelper css model-->
+    <!--Creates page navigation menu based on the PageInfo model with PageLinkTagHelper css model-->
     <div page-model="@Model.PageInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
          page-class-normal="btn-outline-dark"
          page-class-selected="btn-secondary"
+         page-url-category="@Model.CurrentCategory"
          class="btn-group col-md-2">
     </div>
 

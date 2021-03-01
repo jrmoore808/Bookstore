@@ -1,0 +1,12 @@
+﻿@model Book
+<!--Data pulled into the for loop on Index.cshtml-->
+<tr>
+    <td>@Model.Title</td>
+    <td>@Model.AuthorFirst @Model.AuthorLast</td>
+    <td>@Model.Publisher</td>
+    <td>@Model.ISBN</td>
+    <td>@Model.Classification</td>
+    <td>@Model.Category</td>
+    <td>@Model.Pages</td>
+    <td class="bg-success"><b>$@Model.Price</b></td>
+</tr>

@@ -28,12 +28,27 @@
         </nav>
     </header>
 
-    <!--Displayed Page-->
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <!--Title/Headers-->
+    <div class="text-center">
+        <h1 class="display-4">Welcome to the Online Bookstore</h1>
+        <p>Check out our list of favorite books below!</p>
     </div>
+
+    <!--Displayed Page Including ViewComponent Code-->
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col">
+                <br /><br /><br /><br />
+                <vc:navigation-menu />
+            </div>
+            <div class="col">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
 
     <!--Footer-->
     <footer class="border-top footer text-muted">
