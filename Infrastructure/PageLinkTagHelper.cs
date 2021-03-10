@@ -42,7 +42,7 @@ namespace Bookstore.Infrastructure
             {
                 //Builds a tag
                 TagBuilder tag = new TagBuilder("a");
-                PageUrlValues["page"] = i;
+                PageUrlValues["pageNum"] = i;
                 tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
 
                 //For page navbar css
